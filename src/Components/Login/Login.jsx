@@ -1,7 +1,12 @@
 import React from "react";
+import Card from "../UI/Card";
 
 const Login = () => {
-    return <h1>Formulario</h1>;
+    return (
+        <Card>
+            <h1>Card</h1>
+        </Card>
+    );
 };
 
 export default Login;
