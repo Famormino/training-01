@@ -21,7 +21,13 @@ const Login = () => {
     const onPasswordChangeHandler = (event) => {
         setPassword(event.target.value);
 
-        setFormIsValid(event.target.value.trim().length > 6 && email.includes("@"));
+        setFormIsValid(
+            event.target.value.trim().length > 6 && email.includes("@")
+        );
+    };
+
+    const validateEmailHandler = () => {
+        setEmailIsValid(email.includes("@"));
     };
 
     const submitHandler = (event) => {
@@ -32,12 +38,17 @@ const Login = () => {
     return (
         <Card className={classes.login}>
             <form onSubmit={submitHandler}>
-                <div className={classes.control}>
+                <div
+                    className={`${classes.control} ${
+                        emailIsValid === false ? classes.invalid : ""
+                    } `}
+                >
                     <label htmlFor="email">E-Mail</label>
                     <input
                         type="email"
                         id="email"
                         onChange={onEmailChangeHandler}
+                        onBlur={validateEmailHandler}
                     />
                 </div>
                 <div className={classes.control}>
@@ -49,7 +60,9 @@ const Login = () => {
                     />
                 </div>
                 <div className={classes.actions}>
-                    <Button type="submit" disabled={!formIsValid}>Login</Button>
+                    <Button type="submit" disabled={!formIsValid}>
+                        Login
+                    </Button>
                 </div>
             </form>
         </Card>
