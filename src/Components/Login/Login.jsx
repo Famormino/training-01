@@ -30,6 +30,10 @@ const Login = () => {
         setEmailIsValid(email.includes("@"));
     };
 
+    const validatePasswordHandler = () => {
+        setPasswordIsvalid(password.trim().length > 6);
+    };
+
     const submitHandler = (event) => {
         event.preventDefault();
         console.log(email, password, formIsValid);
@@ -51,12 +55,17 @@ const Login = () => {
                         onBlur={validateEmailHandler}
                     />
                 </div>
-                <div className={classes.control}>
+                <div
+                    className={`${classes.control} ${
+                        passwordIsValid === false ? classes.invalid : ""
+                    }`}
+                >
                     <label htmlFor="password">Password</label>
                     <input
                         type="password"
                         id="password"
                         onChange={onPasswordChangeHandler}
+                        onBlur={validatePasswordHandler}
                     />
                 </div>
                 <div className={classes.actions}>
