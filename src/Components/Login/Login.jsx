@@ -14,7 +14,8 @@ const Login = (props) => {
         setEmail(event.target.value);
 
         setFormIsValid(
-            event.target.value.includes("@") && password.trim().length > 6
+            event.target.value.includes("@epe.santafe.gov.ar") &&
+                password.trim().length > 6
         );
     };
 
@@ -22,12 +23,13 @@ const Login = (props) => {
         setPassword(event.target.value);
 
         setFormIsValid(
-            event.target.value.trim().length > 6 && email.includes("@")
+            event.target.value.trim().length > 6 &&
+                email.includes("@epe.santafe.gov.ar")
         );
     };
 
     const validateEmailHandler = () => {
-        setEmailIsValid(email.includes("@"));
+        setEmailIsValid(email.includes("@epe.santafe.gov.ar"));
     };
 
     const validatePasswordHandler = () => {
@@ -36,45 +38,48 @@ const Login = (props) => {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        props.onLogin(email, password)
+        props.onLogin(email, password);
     };
 
     return (
-        <Card className={classes.login}>
-            <form onSubmit={submitHandler}>
-                <div
-                    className={`${classes.control} ${
-                        emailIsValid === false ? classes.invalid : ""
-                    } `}
-                >
-                    <label htmlFor="email">E-Mail</label>
-                    <input
-                        type="email"
-                        id="email"
-                        onChange={onEmailChangeHandler}
-                        onBlur={validateEmailHandler}
-                    />
-                </div>
-                <div
-                    className={`${classes.control} ${
-                        passwordIsValid === false ? classes.invalid : ""
-                    }`}
-                >
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        onChange={onPasswordChangeHandler}
-                        onBlur={validatePasswordHandler}
-                    />
-                </div>
-                <div className={classes.actions}>
-                    <Button type="submit" disabled={!formIsValid}>
-                        Login
-                    </Button>
-                </div>
-            </form>
-        </Card>
+        <>
+            <h1 style={{ textAlign: "center", fontSize: "40px" }}>E P E</h1>
+            <Card className={classes.login}>
+                <form onSubmit={submitHandler}>
+                    <div
+                        className={`${classes.control} ${
+                            emailIsValid === false ? classes.invalid : ""
+                        } `}
+                    >
+                        <label htmlFor="email">E-Mail</label>
+                        <input
+                            type="email"
+                            id="email"
+                            onChange={onEmailChangeHandler}
+                            onBlur={validateEmailHandler}
+                        />
+                    </div>
+                    <div
+                        className={`${classes.control} ${
+                            passwordIsValid === false ? classes.invalid : ""
+                        }`}
+                    >
+                        <label htmlFor="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            onChange={onPasswordChangeHandler}
+                            onBlur={validatePasswordHandler}
+                        />
+                    </div>
+                    <div className={classes.actions}>
+                        <Button type="submit" disabled={!formIsValid}>
+                            Login
+                        </Button>
+                    </div>
+                </form>
+            </Card>
+        </>
     );
 };
 

@@ -13,14 +13,18 @@ const App = () => {
     };
 
     const logoutHandler = () => {
-        setIsLogged(false)
-    }
+        setIsLogged(false);
+    };
 
     return (
         <React.Fragment>
-            <Navbar onLogout={logoutHandler} loggedIn={isLogged}/>
+            <Navbar onLogout={logoutHandler} loggedIn={isLogged} />
             <main>
-                {!isLogged ? <Login onLogin={loginHandler} /> : <Home onLogout={logoutHandler} user={userName}/>}
+                {!isLogged ? (
+                    <Login onLogin={loginHandler} />
+                ) : (
+                    <Home onLogout={logoutHandler} user={userName} />
+                )}
             </main>
         </React.Fragment>
     );
