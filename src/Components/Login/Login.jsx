@@ -11,9 +11,18 @@ const Login = (props) => {
     const [formIsValid, setFormIsValid] = useState(false);
 
     useEffect(() => {
-        setFormIsValid(
-            email.includes("@epe.santafe.gov.ar") && password.trim().length > 6
-        );
+        const identifier = setTimeout(() => {
+            console.log("Validation");
+            setFormIsValid(
+                email.includes("@epe.santafe.gov.ar") &&
+                    password.trim().length > 6
+            );
+        }, 500);
+
+        return () => {
+            console.log("CLEANUP");
+            clearTimeout(identifier)
+        };
     }, [email, password]);
 
     const onEmailChangeHandler = (event) => {
@@ -39,7 +48,15 @@ const Login = (props) => {
 
     return (
         <>
-            <h1 style={{ textAlign: "center", fontSize: "60px", color: "#0e005f" }}>E P E</h1>
+            <h1
+                style={{
+                    textAlign: "center",
+                    fontSize: "60px",
+                    color: "#0e005f",
+                }}
+            >
+                E P E
+            </h1>
             <Card className={classes.login}>
                 <form onSubmit={submitHandler}>
                     <div
