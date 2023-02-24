@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../UI/Button";
 import Card from "../UI/Card";
 import classes from "./Login.module.css";
@@ -10,22 +10,18 @@ const Login = (props) => {
     const [passwordIsValid, setPasswordIsvalid] = useState();
     const [formIsValid, setFormIsValid] = useState(false);
 
+    useEffect(() => {
+        setFormIsValid(
+            email.includes("@epe.santafe.gov.ar") && password.trim().length > 6
+        );
+    }, [email, password]);
+
     const onEmailChangeHandler = (event) => {
         setEmail(event.target.value);
-
-        setFormIsValid(
-            event.target.value.includes("@epe.santafe.gov.ar") &&
-                password.trim().length > 6
-        );
     };
 
     const onPasswordChangeHandler = (event) => {
         setPassword(event.target.value);
-
-        setFormIsValid(
-            event.target.value.trim().length > 6 &&
-                email.includes("@epe.santafe.gov.ar")
-        );
     };
 
     const validateEmailHandler = () => {
@@ -43,7 +39,7 @@ const Login = (props) => {
 
     return (
         <>
-            <h1 style={{ textAlign: "center", fontSize: "40px" }}>E P E</h1>
+            <h1 style={{ textAlign: "center", fontSize: "60px", color: "#0e005f" }}>E P E</h1>
             <Card className={classes.login}>
                 <form onSubmit={submitHandler}>
                     <div
