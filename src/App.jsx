@@ -2,31 +2,32 @@ import React, { useEffect, useState } from "react";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
 import Navbar from "./Components/MainHeader/Navbar";
+import AuthContext from "./store/auth-context";
 
 const App = () => {
     const [isLogged, setIsLogged] = useState(false);
     const [userName, setUserName] = useState();
 
-    const localStorageInfo = localStorage.getItem('loggedIn')
-    
+    const localStorageInfo = localStorage.getItem("loggedIn");
+
     useEffect(() => {
-        if(localStorageInfo === '1'){
-            setIsLogged(true)
+        if (localStorageInfo === "1") {
+            setIsLogged(true);
         }
-    }, [])
+    }, []);
     const loginHandler = (email) => {
-        localStorage.setItem('loggedIn', '1')
+        localStorage.setItem("loggedIn", "1");
         setIsLogged(true);
         setUserName(email);
     };
 
     const logoutHandler = () => {
         setIsLogged(false);
-        localStorage.removeItem('loggedIn')
+        localStorage.removeItem("loggedIn");
     };
 
     return (
-        <React.Fragment>
+        <AuthContext.Provider>
             <Navbar onLogout={logoutHandler} loggedIn={isLogged} />
             <main>
                 {!isLogged ? (
@@ -35,7 +36,7 @@ const App = () => {
                     <Home onLogout={logoutHandler} user={userName} />
                 )}
             </main>
-        </React.Fragment>
+        </AuthContext.Provider>
     );
 };
 
