@@ -25,10 +25,14 @@ const App = () => {
         setIsLogged(false);
         localStorage.removeItem("loggedIn");
     };
-
     return (
-        <AuthContext.Provider>
-            <Navbar onLogout={logoutHandler} loggedIn={isLogged} />
+        <AuthContext.Provider
+            value={{
+                isLoggedIn: isLogged,
+                loggedOut: logoutHandler,
+            }}
+        >
+            <Navbar onLogout={logoutHandler} />
             <main>
                 {!isLogged ? (
                     <Login onLogin={loginHandler} />

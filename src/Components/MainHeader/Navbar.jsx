@@ -12,7 +12,7 @@ const Navbar = (props) => {
             ) : (
                 <h3>Logged</h3>
             )}
-            <Navigation loggedIn={props.loggedIn} loggedOut={props.onLogout} />
+            <Navigation />
         </header>
     );
 };
