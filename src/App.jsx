@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
 import Navbar from "./Components/MainHeader/Navbar";
@@ -6,15 +6,15 @@ import AuthContext from "./store/auth-context";
 
 const App = () => {
     const ctx = useContext(AuthContext);
-    console.log(ctx.isLogged)
+    console.log(ctx.isLogged);
     return (
         <React.Fragment>
             <Navbar onLogout={ctx.logout} />
             <main>
                 {!ctx.isLogged ? (
-                    <Login onLogin={ctx.login} />
+                    <Login  />
                 ) : (
-                    <Home onLogout={ctx.logout} />
+                    <Home  />
                 )}
             </main>
         </React.Fragment>

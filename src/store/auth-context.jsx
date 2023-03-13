@@ -3,10 +3,8 @@ import React, { useEffect, useState } from "react";
 const AuthContext = React.createContext({
     isLogged: false,
     logOutHandler: () => {},
-    logInHandler: () => {},
+    logInHandler: (email,password) => {},
 });
-
-export default AuthContext;
 
 export const AuthLogin = (props) => {
     const [isLogged, setIsLogged] = useState(false);
@@ -20,12 +18,12 @@ export const AuthLogin = (props) => {
     }, []);
 
     const logInHandler = () => {
-        setIsLogged(true);
         localStorage.setItem("loggedIn", "1");
+        setIsLogged(true);
     };
     const logOutHandler = () => {
-        setIsLogged(false);
         localStorage.removeItem("loggedIn");
+        setIsLogged(false);
     };
 
     return (
@@ -40,3 +38,5 @@ export const AuthLogin = (props) => {
         </AuthContext.Provider>
     );
 };
+
+export default AuthContext;
