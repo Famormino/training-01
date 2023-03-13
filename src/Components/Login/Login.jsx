@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../store/auth-context";
-import Button from "../UI/Button";
-import Card from "../UI/Card";
+import Button from "../UI/Button/Button";
+import Card from "../UI/Card/Card";
+import Input from "../UI/Input/Input";
 import classes from "./Login.module.css";
 
 const Login = () => {
@@ -26,7 +27,7 @@ const Login = () => {
         };
     }, [email, password]);
 
-    const ctx = useContext(AuthContext)
+    const ctx = useContext(AuthContext);
 
     const onEmailChangeHandler = (event) => {
         setEmail(event.target.value);
@@ -62,32 +63,24 @@ const Login = () => {
             </h1>
             <Card className={classes.login}>
                 <form onSubmit={submitHandler}>
-                    <div
-                        className={`${classes.control} ${
-                            emailIsValid === false ? classes.invalid : ""
-                        } `}
-                    >
-                        <label htmlFor="email">E-Mail</label>
-                        <input
-                            type="email"
-                            id="email"
-                            onChange={onEmailChangeHandler}
-                            onBlur={validateEmailHandler}
-                        />
-                    </div>
-                    <div
-                        className={`${classes.control} ${
-                            passwordIsValid === false ? classes.invalid : ""
-                        }`}
-                    >
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            onChange={onPasswordChangeHandler}
-                            onBlur={validatePasswordHandler}
-                        />
-                    </div>
+                    <Input
+                        id="email"
+                        label="E-Mail"
+                        type="email"
+                        isValid={emailIsValid}
+                        value={email}
+                        onChange={onEmailChangeHandler}
+                        onBlur={validateEmailHandler}
+                    />
+                    <Input
+                        id="password"
+                        label="Password"
+                        type="password"
+                        isValid={passwordIsValid}
+                        value={password}
+                        onChange={onPasswordChangeHandler}
+                        onBlur={validatePasswordHandler}
+                    />
                     <div className={classes.actions}>
                         <Button type="submit" disabled={!formIsValid}>
                             Login
