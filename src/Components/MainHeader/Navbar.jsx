@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import AuthContext from "../../store/auth-context";
 import classes from "./Navbar.module.css";
 import Navigation from "./Navigations";
 
-const Navbar = (props) => {
+const Navbar = () => {
+    const ctx = useContext(AuthContext)
     return (
         <header className={classes["main-header"]}>
-            {!props.loggedIn ? (
+            {!ctx.isLogged ? (
                 <h3>
                     Please <u>login</u>
                 </h3>
